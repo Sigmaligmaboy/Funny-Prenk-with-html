@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osama</title>
+    <style>
+        body {
+            background-color: aquamarine;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        a:hover {
+            color: red;
+            /* Changes color to red when hovered */
+        }
+
+        /* Animation for shaking effect */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+            animation-iteration-count: 10;
+        }
+
+        /* Flashing blue-red background animation */
+        @keyframes flashBackground {
+            0% {
+                background-color: blue;
+            }
+            50% {
+                background-color: red;
+            }
+            100% {
+                background-color: blue;
+            }
+        }
+
+        .flash {
+            animation: flashBackground 1s infinite;
+        }
+
+        #warning {
+            display: none;
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 9999;
+            animation: shake 1s ease-in-out infinite;
+        }
+
+        #mainContent {
+            text-align: center;
+            z-index: 1; /* Ensures content appears below the warning */
+        }
+
+        /* Hide everything on submit */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <head>
+        <h1><center>All about Osama Bin Laden</center></h1>
+    </head>
+
+    <div id="mainContent">
+        <p><h2><center>Osama's pictures</center></h2></p>
+        <center><img src="OIP (9).jpg" border="6"></center>
+        <hr>
+        <center>
+            <p><h2>Osama's wiki page:</h2></p>
+            <a href="https://en.wikipedia.org/wiki/Osama_bin_Laden" target="_blank"> Osama wiki </a>
+        </center>
+        <center>
+            <p><h2>A documentary on Osama bin Laden:</h2></p>
+            <video controls width="640" height="360" loop>
+                <source src="Recording 2025-05-07 191536.mp4">
+            </video>
+        </center>
+        <hr>
+        <center>
+            <p><h1>If you liked Osama's work please enter the details given below for a prize:</h1></p>
+            <form onsubmit="return showFBIMessage()">
+                First name: <input type="text" name="FirstName"><br>
+                Last name: <input type="text" name="LastName"><br>
+                <input type="submit" value="Submit">
+            </form>
+        </center>
+    </div>
+
+    <!-- WARNING MESSAGE -->
+    <div id="warning">
+        ⚠️ YOU ARE BEING TRACKED ⚠️
+    </div>
+
+    <!-- POLICE SIREN AUDIO -->
+    <audio id="sirenAudio" preload="auto">
+        <source src="11900601.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function showFBIMessage() {
+            alert("You are on the FBI hit list");
+
+            // Play the police siren sound
+            var siren = document.getElementById("sirenAudio");
+            siren.play();  // This should work when the form is submitted
+
+            // Hide all content inside #mainContent
+            document.getElementById("mainContent").classList.add("hidden");
+
+            // Add flashing background color (blue and red)
+            document.body.classList.add("flash");
+
+            // Apply shake effect and show the warning message
+            document.body.classList.add("shake");
+            document.getElementById("warning").style.display = "block";
+
+            return false; // Prevent form submission
+        }
+    </script>
+
+</body>
+</html>
